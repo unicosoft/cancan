@@ -87,7 +87,7 @@ module CanCan
     end
 
     def matches_subject?(subject)
-      @subjects.include?(:all) || @subjects.include?(subject) || matches_subject_class?(subject)
+      @subjects.include?(:all) || @subjects.include?(subject) || (subject.kind_of?(Module) && @subjects.include?(subject.name)) || matches_subject_class?(subject)
     end
 
     def matches_subject_class?(subject)
